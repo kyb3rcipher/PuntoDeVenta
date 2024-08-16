@@ -38,7 +38,7 @@ class Cart {
                         <button class="rounded-button" onclick="Cart.productSellQuantityChange(this, 'add')"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </td>
-                <td>$${product.price}</td>
+                <td>$${product.price.toFixed(2)}</td>
                 <td><button class="product-sell-remove" onclick="Cart.productSellRemove(this)"><i class="fa-solid fa-trash"></i></button></td>
             `;
             
