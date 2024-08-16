@@ -16,10 +16,16 @@ class Product {
 class Cart {
     static cartTbody = document.getElementById('cart').querySelector('tbody');
     static total = document.getElementById('total');
+    static emptyMessage = document.getElementById('empty-message');
+    static emptyMessageCopy = this.emptyMessage.cloneNode(true);
 
     static addProduct(product) {
         const existingProduct = Array.from(Cart.cartTbody.querySelectorAll('tr')).find(row => row.querySelector('td').innerText === product.name);
         
+        if (Cart.cartTbody.querySelectorAll('tr').length == 0) {
+            this.emptyMessage.remove();
+        }
+
         if (!existingProduct) {
             const productCart = document.createElement('tr');
             productCart.classList.add('product-sell');
@@ -64,6 +70,10 @@ class Cart {
     static productSellRemove(button) {
         button.closest('tr').remove();
         this.updateTotal();
+
+        if (Cart.cartTbody.querySelectorAll('tr').length <= 0) {
+            document.getElementById('cart').querySelector('thead').appendChild(this.emptyMessageCopy);
+        }
     }
 
     static updateTotal() {
