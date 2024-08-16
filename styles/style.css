@@ -93,3 +93,62 @@ td {
     width: 100%;
     visibility: hidden;
 }
+
+/******************** Cobrar ventana dialog popup ********************/
+.popup-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+.popup-container.active {
+    opacity: 1;
+    pointer-events: auto;
+    transition: 0.4s ease;
+}
+
+.popup-container .popup-box {
+    text-align: center;
+    width: 500px;
+    background: #f2f2f2;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    transform: scale(0);
+}
+.popup-container .popup-box div {
+    padding: 30px;
+}
+.popup-container.active .popup-box {
+    transform: scale(1);
+    transition: 0.4s ease;
+    transition-delay: 0.25s;
+}
+
+.popup-box #close {
+    all: initial;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 15px; 
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.popup-box h1 {
+    color: #333;
+    line-height: 1;
+}
+.popup-box p {
+    color: #333;
+    margin: 12px 0 20px;
+}
+
+.popup-container #cobrar {
+    width: 100%;
+}

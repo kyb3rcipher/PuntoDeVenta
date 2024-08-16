@@ -17,6 +17,7 @@ class Cart {
     static cartTbody = document.getElementById('cart').querySelector('tbody');
     static total = document.getElementById('total');
     static emptyMessage = document.getElementById('empty-message');
+    static cobrarDialog = document.getElementById('cobrar-ventana');
 
     static addProduct(product) {
         const existingProduct = Array.from(Cart.cartTbody.querySelectorAll('tr')).find(row => row.querySelector('td').innerText === product.name);
@@ -89,14 +90,64 @@ class Cart {
             totalToPay += price * quantity;
             
         });
-    
-        this.total.innerHTML = `<i class="fa-solid fa-cash-register"></i> Vender - $${totalToPay.toFixed(2)}`;
+        totalToPay = totalToPay.toFixed(2);
+
+        this.total.innerHTML = `<i class="fa-solid fa-cash-register"></i> Vender - $${totalToPay}`;
+        this.cobrarDialog.querySelector('strong').innerText = 'Total: $' + totalToPay;
+    }
+
+    static cobrarVenta() {
+        const cobrarDialog = document.getElementById('cobrar-ventana'), buttonCobrar = document.getElementById('cobrar'), buttonClose = document.getElementById('close'), pagoInput = cobrarDialog.querySelector('input');
+        const total = cobrarDialog.querySelector('h1').innerText.replace('Total: $', '');
+
+        pagoInput.value = total;
+        pago();
+        pagoInput.addEventListener('input', pago);
+        function pago() {
+            let pago = cobrarDialog.querySelector('input').value,
+            cambioText = cobrarDialog.querySelector('h3'), cambio;
+            
+            cambio = parseFloat(pago - total).toFixed(2);
+            cambioText.innerText = 'Cambio: $' + cambio;
+            
+            if (parseFloat(pago) >= parseFloat(total)) {
+                buttonCobrar.classList.add('green-button');
+                buttonCobrar.style.cursor = 'default';
+                
+            } else {
+                buttonCobrar.classList.remove('green-button');
+                buttonCobrar.style.cursor = 'not-allowed';
+                cambioText.innerHTML = 'Cambio: ---';
+            }
+        }
+        
+        // Boton de cierre de dialog[popup-window] de cobro
+        buttonClose.addEventListener('click', () => {
+            cobrarDialog.close();
+            cobrarDialog.classList.remove('active');
+        });
+        
+        // Cobrar function
+        buttonCobrar.addEventListener('click', function () {
+            if (buttonCobrar.classList.contains('green-button')) {
+                
+            } else {
+                alert('No se puede cobrar un pago menor al total de la venta');
+            }
+        });
+        
+        
+        cobrarDialog.showModal();
+        cobrarDialog.classList.add('active');
+        pagoInput.select();
     }
 }
 
 // Create objets for each product and add they code
 document.addEventListener('DOMContentLoaded', () => {
-    const productElements = document.getElementsByClassName('product');
+    const productElements = document.getElementsByClassName('product'), buttonCobrar = document.getElementById('total');
     
     Array.from(productElements).forEach(product => new Product(product));
+    
+    buttonCobrar.addEventListener('click', Cart.cobrarVenta);
 });
