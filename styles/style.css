@@ -9,6 +9,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 25px;
 }
 
 /******************** PRODUCTS ********************/
@@ -90,4 +91,5 @@ td {
 
 #ticket #total {
     width: 100%;
+    visibility: hidden;
 }

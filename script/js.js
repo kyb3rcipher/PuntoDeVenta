@@ -24,6 +24,7 @@ class Cart {
         
         if (Cart.cartTbody.querySelectorAll('tr').length == 0) {
             this.emptyMessage.remove();
+            this.total.style.visibility = 'visible';
         }
 
         if (!existingProduct) {
@@ -73,6 +74,7 @@ class Cart {
 
         if (Cart.cartTbody.querySelectorAll('tr').length <= 0) {
             document.getElementById('cart').querySelector('thead').appendChild(this.emptyMessageCopy);
+            this.total.style.visibility = 'hidden';
         }
     }
 
