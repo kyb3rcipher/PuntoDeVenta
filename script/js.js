@@ -39,7 +39,8 @@ class Cart {
                         <button class="rounded-button" onclick="Cart.productSellQuantityChange(this, 'add')"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </td>
-                <td>$${product.price.toFixed(2)}</td>
+                <td id="product-price">$${product.price.toFixed(2)}</td>
+                <td id="product-total">$${product.price.toFixed(2)}</td>
                 <td><button class="product-sell-remove" onclick="Cart.productSellRemove(this)"><i class="fa-solid fa-trash"></i></button></td>
             `;
             
@@ -53,10 +54,12 @@ class Cart {
 
     static productSellQuantityChange(button, type) {
         const productSellQuantityControls = button.parentElement;
-        let quantity = productSellQuantityControls.getElementsByTagName('span')[0], quantityNumber = quantity.innerText.replace('x', '');
+        let quantity = productSellQuantityControls.getElementsByTagName('span')[0], quantityNumber = quantity.innerText.replace('x', ''),
+        productPrice = document.getElementById('product-price'), productTotal = document.getElementById('product-total');
         
         if (type == 'add') {
             quantity.innerText = 'x' + ++quantityNumber;
+            productTotal.innerText = '$' + parseFloat(parseFloat(productPrice.innerText.replace('$', '')) * quantityNumber).toFixed(2);
         } else {
             if (quantityNumber > 1) {
                 quantity.innerText = 'x' + --quantityNumber;
