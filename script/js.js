@@ -17,13 +17,12 @@ class Cart {
     static cartTbody = document.getElementById('cart').querySelector('tbody');
     static total = document.getElementById('total');
     static emptyMessage = document.getElementById('empty-message');
-    static emptyMessageCopy = this.emptyMessage.cloneNode(true);
 
     static addProduct(product) {
         const existingProduct = Array.from(Cart.cartTbody.querySelectorAll('tr')).find(row => row.querySelector('td').innerText === product.name);
         
         if (Cart.cartTbody.querySelectorAll('tr').length == 0) {
-            this.emptyMessage.remove();
+            this.emptyMessage.style.display = 'none';
             this.total.style.visibility = 'visible';
         }
 
@@ -76,7 +75,7 @@ class Cart {
         this.updateTotal();
 
         if (Cart.cartTbody.querySelectorAll('tr').length <= 0) {
-            document.getElementById('cart').querySelector('thead').appendChild(this.emptyMessageCopy);
+            this.emptyMessage.style.display = 'table-row';
             this.total.style.visibility = 'hidden';
         }
     }
