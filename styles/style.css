@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #F6F6F6; 
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/******************** PRODUCTS ********************/
+#products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    background-color: white;
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+
+.product img {
+    height: 100px;
+}
+.product {
+    width: 200px;
+    border: 1px solid rgb(0 0 0 / 0.8);
+    text-align: center;
+    cursor: pointer;
+}
+
+/******************** TICKET ********************/
+#ticket {
+    padding-left: 20px;
+}
+
+#ticket h2 {
+    margin: 0;
+}
+
+.ticket table {
+    padding: 8px;
+}
+
+.ticket table {
+    border-collapse: collapse;
+}
+
+/* Estilos generales para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Esto asegura que las celdas compartan los bordes */
+}
+
+tr {
+    border-bottom: 2px solid #ddd;
+}
+tr:nth-child(even){ background-color: #F2F2F2; }
+tr:hover { background-color: #DDD; }
+
+tr .product-sell-quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.product-sell-quantity-controls .rounded-button {
+    height: 20px;
+    width: 20px;
+    margin-top: 0;
+    line-height: 20px;
+    font-size: 15px;
+}
+
+tr .product-sell-remove {
+    all: unset;
+    cursor: pointer;
+}
+
+table #empty-message { border-bottom: 0; }
+
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+#ticket #total {
+    width: 100%;
+}

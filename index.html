@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Punto De Venta GT</title>
+    <link rel="stylesheet" href="styles/flat-remix.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+<main>
+    <div id="products">
+        <div class="product">
+            <img src="images/products-example/cocacola.webp" alt="">
+            <h4>Coca Cola 500ml</h4>
+            <p>$20.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/bigcola.jpeg" alt="">
+            <h4>Big Cola 500ml</h4>
+            <p>$10.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/frioles.jpeg" alt="">
+            <h4>Frijoles</h4>
+            <p>$30.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/maruchan.webp" alt="">
+            <h4>Maruchan</h4>
+            <p>$15.50</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/tortillas.webp" alt="">
+            <h4>Tortillas</h4>
+            <p>$90.30</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/sabritas.jpeg" alt="">
+            <h4>Sabritas</h4>
+            <p>$20.01</p>
+        </div>
+    </div>
+
+    <div id="ticket">
+        <h2>Ticket de Venta <a href="#">#1</a></h2>
+        
+        <table id="cart">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Cantidad</td>
+                    <td>Total</td>
+                    <td>Eliminar</td>
+                </tr>
+                <tr id="empty-message">
+                    <td colspan="4">No hay productos en venta</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Here add the products in cart for sell -->
+            </tbody>
+        </table>
+
+        <button class="blue-button" id="total"><i class="fa-solid fa-cash-register"></i> Vender - $0.00</button>
+    </div>
+</main>
+
+<script src="script/js.js"></script>
+</body>
+</html>
