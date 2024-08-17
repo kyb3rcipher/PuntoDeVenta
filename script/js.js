@@ -145,9 +145,16 @@ class Cart {
 
 // Create objets for each product and add they code
 document.addEventListener('DOMContentLoaded', () => {
-    const productElements = document.getElementsByClassName('product'), buttonCobrar = document.getElementById('total');
+    const sidebar = document.querySelector('nav'),
+        toggleSideBar = document.querySelector(".toggle");
+    const productElements = document.getElementsByClassName('product'), 
+        buttonCobrar = document.getElementById('total');
     
     Array.from(productElements).forEach(product => new Product(product));
     
     buttonCobrar.addEventListener('click', Cart.cobrarVenta);
+    
+    toggleSideBar.addEventListener('click' , () =>{
+        sidebar.classList.toggle('close');
+    });
 });
