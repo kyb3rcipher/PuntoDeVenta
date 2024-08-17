@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif, FontAwesome;
 }
 
 ::selection {
@@ -207,6 +207,11 @@ header .image-text .text-2 {
     background-color: white;
     border: 1px solid #CCC;
     padding: 10px;
+}
+
+#search {
+    width: 100%;
+    grid-column: 1 / -1;
 }
 
 .product img {
