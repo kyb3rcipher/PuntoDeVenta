@@ -254,10 +254,7 @@ table {
     border-collapse: collapse; /* Esto asegura que las celdas compartan los bordes */
 }
 
-tr {
-    border-bottom: 2px solid #ddd;
-}
-tr:nth-child(even){ background-color: #F2F2F2; }
+tr { border-bottom: 2px solid #DDD; }
 tr:hover { background-color: #DDD; }
 
 tr .product-sell-quantity-controls {
