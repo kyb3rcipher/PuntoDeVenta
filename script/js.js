@@ -91,21 +91,21 @@ class Cart {
             
         });
         totalToPay = totalToPay.toFixed(2);
-
+        
         this.total.innerHTML = `<i class="fa-solid fa-cash-register"></i> Vender - $${totalToPay}`;
         this.cobrarDialog.querySelector('strong').innerText = 'Total: $' + totalToPay;
     }
 
     static cobrarVenta() {
-        const cobrarDialog = document.getElementById('cobrar-ventana'), buttonCobrar = document.getElementById('cobrar'), buttonClose = document.getElementById('close'), pagoInput = cobrarDialog.querySelector('input');
-        const total = cobrarDialog.querySelector('h1').innerText.replace('Total: $', '');
-
+        const cobrarWindow = document.getElementById('cobrar-ventana'), cobrarDialog = cobrarWindow.querySelector('dialog'), buttonCobrar = document.getElementById('cobrar'), buttonClose = document.getElementById('close'), pagoInput = cobrarWindow.querySelector('input');
+        const total = cobrarWindow.querySelector('h1').innerText.replace('Total: $', '');
+        
         pagoInput.value = total;
         pago();
         pagoInput.addEventListener('input', pago);
         function pago() {
-            let pago = cobrarDialog.querySelector('input').value,
-            cambioText = cobrarDialog.querySelector('h3'), cambio;
+            let pago = cobrarWindow.querySelector('input').value,
+            cambioText = cobrarWindow.querySelector('h3'), cambio;
             
             cambio = parseFloat(pago - total).toFixed(2);
             cambioText.innerText = 'Cambio: $' + cambio;
@@ -124,7 +124,7 @@ class Cart {
         // Boton de cierre de dialog[popup-window] de cobro
         buttonClose.addEventListener('click', () => {
             cobrarDialog.close();
-            cobrarDialog.classList.remove('active');
+            cobrarWindow.classList.toggle('active');
         });
         
         // Cobrar function
@@ -138,7 +138,7 @@ class Cart {
         
         
         cobrarDialog.showModal();
-        cobrarDialog.classList.add('active');
+        cobrarWindow.classList.toggle('active');
         pagoInput.select();
     }
 }
