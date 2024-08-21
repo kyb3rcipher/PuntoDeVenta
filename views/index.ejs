@@ -1,0 +1,122 @@
+<main>
+    <div id="products">
+        <input type="text" id="search" placeholder="&#xF002; Bucar o codigo de producto">
+        
+        <div class="product">
+            <img src="images/products-example/cocacola.webp" alt="">
+            <h4>Coca Cola 500ml</h4>
+            <p>$20.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/bigcola.jpeg" alt="">
+            <h4>Big Cola 500ml</h4>
+            <p>$10.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/frioles.jpeg" alt="">
+            <h4>Frijoles</h4>
+            <p>$30.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/maruchan.webp" alt="">
+            <h4>Maruchan</h4>
+            <p>$15.50</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/tortillas.webp" alt="">
+            <h4>Tortillas</h4>
+            <p>$90.30</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/sabritas.jpeg" alt="">
+            <h4>Sabritas</h4>
+            <p>$20.01</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/cocacola.webp" alt="">
+            <h4>Coca Cola 500ml</h4>
+            <p>$20.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/bigcola.jpeg" alt="">
+            <h4>Big Cola 500ml</h4>
+            <p>$10.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/frioles.jpeg" alt="">
+            <h4>Frijoles</h4>
+            <p>$30.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/maruchan.webp" alt="">
+            <h4>Maruchan</h4>
+            <p>$15.50</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/tortillas.webp" alt="">
+            <h4>Tortillas</h4>
+            <p>$90.30</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/sabritas.jpeg" alt="">
+            <h4>Sabritas</h4>
+            <p>$20.01</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/cocacola.webp" alt="">
+            <h4>Coca Cola 500ml</h4>
+            <p>$20.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/bigcola.jpeg" alt="">
+            <h4>Big Cola 500ml</h4>
+            <p>$10.00</p>
+        </div>
+        <div class="product">
+            <img src="images/products-example/frioles.jpeg" alt="">
+            <h4>Frijoles</h4>
+            <p>$30.00</p>
+        </div>
+    </div>
+
+    <div id="ticket">
+        <h2>Ticket de Venta <a href="#">#1</a></h2>
+        
+        <table id="cart">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                    <td>Total</td>
+                    <td>Eliminar</td>
+                </tr>
+                <tr id="empty-message">
+                    <td colspan="5">No hay productos en venta</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Here add the products in cart for sell -->
+            </tbody>
+        </table>
+
+        <button class="blue-button" id="total"><i class="fa-solid fa-cash-register"></i> Vender - $0.00</button>
+    </div>
+</main>
+
+<div id="cobrar-ventana" class="popup">
+    <div class="popup-box"></div>
+    <dialog class="popup-content">
+        <button id="close" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <h1><strong>Total: $0.00</strong></h1>
+        
+        <i class="fa-solid fa-money-bill"></i>
+        <i class="fa-solid fa-credit-card"></i>
+        <i class="fa-solid fa-money-bill-transfer"></i>
+
+        <br><input type="number" placeholder="Pago">
+        <h3>Cambio: $<span id="cambio">0.00</span></h3>
+
+        <button id="cobrar">Cobrar Venta</button>
+    </dialog>
+</div>
