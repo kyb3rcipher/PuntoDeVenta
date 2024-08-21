@@ -11,8 +11,17 @@ router.get('/', (req, res) => {
             return console.error('Error al obtener los productos:', err.message);
         }
         
-        // Render the view and pass the products row as objects array
         res.render('index', { productos: rows });
+    });
+});
+
+router.get('/productos', (req, res) => {
+    db.all('SELECT * FROM productos', [], (err, rows) => {
+        if (err) {
+            return console.error('Error al obtener los productos:', err.message);
+        }
+        
+        res.render('products', { productos: rows });
     });
 });
 

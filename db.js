@@ -26,8 +26,11 @@ function abrir() {
 
 function crearTablas(db) {
     db.run(`CREATE TABLE IF NOT EXISTS productos (
+        codigo TEXT NOT NULL,
+        tipo VARCHAR(20) NOT NULL,
         nombre VARCHAR(20) NOT NULL,
-        precio TEXT NOT NULL
+        precio TEXT NOT NULL,
+        proveedor TEXT NOT NULL
     )`, (err) => {
         if (err) {
             return console.error('Error al crear la tabla productos:', err.message);
@@ -37,13 +40,13 @@ function crearTablas(db) {
 }
 
 function insertarProductosEjemplo(db) {
-    db.run(`INSERT INTO productos (nombre, precio) VALUES
-        ('Coca Cola 500ml', '20.00'),
-        ('Big Cola 500ml', '10.00'),
-        ('Frijoles', '30.00'),
-        ('Maruchan', '15.50'),
-        ('Tortillas', '90.50'),
-        ('Sabritas', '20.00')
+    db.run(`INSERT INTO productos VALUES
+        ('IDK', 'CODE', 'Coca Cola 500ml', '20.00', 'Coca Cola'),
+        ('IDK', 'CODE', 'Big Cola 500ml', '10.00', 'Big Cola'),
+        ('IDK', 'CODE', 'Frijoles', '30.00', 'Frijoleria?'),
+        ('IDK', 'CODE', 'Maruchan', '15.50', 'Maruchan?'),
+        ('IDK', 'CODE', 'Tortillas', '90.50', 'Tortilleria'),
+        ('IDK', 'CODE', 'Sabritas', '20.00', 'Sabritas')
     ;`, (err) => {
         if (err) {
             return console.error('Error al insertar productos ejemplo:', err.message);
@@ -51,6 +54,6 @@ function insertarProductosEjemplo(db) {
         console.log('Inserción de productos ejemplo hecha con éxito.');
     });
 }
-//insertarProductosEjemplo(abrir());
+// insertarProductosEjemplo(abrir());
 
 export default { abrir };
