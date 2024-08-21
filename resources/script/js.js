@@ -55,7 +55,8 @@ class Cart {
     static productSellQuantityChange(button, type) {
         const productSellQuantityControls = button.parentElement;
         let quantity = productSellQuantityControls.getElementsByTagName('span')[0], quantityNumber = quantity.innerText.replace('x', ''),
-        productPrice = document.getElementById('product-price'), productTotal = document.getElementById('product-total');
+        productPrice = document.getElementById('product-price'), productTotal = productSellQuantityControls.parentElement.querySelector('#product-total');
+        console.log(productTotal);
         
         if (type == 'add') {
             quantity.innerText = 'x' + ++quantityNumber;
@@ -88,7 +89,6 @@ class Cart {
         actualSellProducts.forEach(product => {
             var price = parseFloat(product.querySelectorAll('td')[2].innerText.replace('$', '')), quantity = parseInt(product.querySelector('.product-sell-quantity').innerText.replace('x', ''));
             totalToPay += price * quantity;
-            
         });
         totalToPay = totalToPay.toFixed(2);
         
