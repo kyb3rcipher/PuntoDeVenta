@@ -1,4 +1,58 @@
-#nuevo-producto {
+h1 {
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left-side, .right-side {
+    width: 50%;
+}
+
+fieldset {
+    width: 0;
+    padding: 5px;
+    background-color: #F6F6F6; 
+    border-radius: 6px;
+}
+
+#boton-agregar-codigo {
+    height: 30px;
+    width: 30px;
+    margin-top: 0;
+    line-height: 20px;
+    font-size: 15px;
+}
+#label-codigos {
+    padding: 0 2px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#codigos-container {
+    width: 250px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    overflow-y: auto;
+    border-radius: 6px;
+}
+
+input[type=file] {
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+
+input[type=submit] {
+    margin: 7px;
+}
+
+#boton-nuevo-producto {
     position: sticky;
     right: 20px;
     bottom: 20px;

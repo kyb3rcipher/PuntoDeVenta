@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="styles/products.css">
+<script src="script/products.js"></script>
 
 <main>
 <h1>Productos</h1>
@@ -9,23 +10,24 @@
             <td>Nombre</td>
             <td>Precio</td>
             <td>Tipo</td>
-            <td>Codigo</td>
             <td>Proveedor</td>
+            <td>Codigo</td>
             <td>Imagen</td>
             <td>Accion</td>
         </tr>
     </thead>
     <tbody>
         <% productos.forEach(producto => {
-            const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-');
+            const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-'),
+                codigoArray = JSON.parse(producto.codigo)[0];
         %>
             <tr>
                 <td><%= producto.nombre %></td>
                 <td>$<%= producto.precio %></td>
                 <td><%= producto.tipo %></td>
-                <td><%= producto.codigo %></td>
                 <td><%= producto.proveedor %></td>
-                <td><img style="height: 50px;" src="images/products/<%= imagenNombre %>.webp"></td>
+                <td><%= codigoArray %></td>
+                <td><img style="height: 50px;" src="/images/products/<%= imagenNombre %>.webp"></td>
                 <td>
                     <button class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
                     <button class="red-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
@@ -35,5 +37,5 @@
     </tbody>
 </table>
 
-<button id="nuevo-producto" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
+<button id="boton-nuevo-producto" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
 </main>

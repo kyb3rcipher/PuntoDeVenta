@@ -41,12 +41,12 @@ function crearTablas(db) {
 
 function insertarProductosEjemplo(db) {
     db.run(`INSERT INTO productos VALUES
-        ('IDK', 'CODE', 'Coca Cola 500ml', '20.00', 'Coca Cola'),
-        ('IDK', 'CODE', 'Big Cola 500ml', '10.00', 'Big Cola'),
-        ('IDK', 'CODE', 'Frijoles', '30.00', 'Frijoleria?'),
-        ('IDK', 'CODE', 'Maruchan', '15.50', 'Maruchan?'),
-        ('IDK', 'CODE', 'Tortillas', '90.50', 'Tortilleria'),
-        ('IDK', 'CODE', 'Sabritas', '20.00', 'Sabritas')
+        ('["CODE", "CODE2"]', 'IDK', 'Coca Cola 500ml', '20.00', 'Coca Cola'),
+        ('["CODE", "CODE2"]', 'IDK', 'Big Cola 500ml', '10.00', 'Big Cola'),
+        ('["CODE", "CODE2"]', 'IDK', 'Frijoles', '30.00', 'Frijoleria?'),
+        ('["CODE", "CODE2"]', 'IDK', 'Maruchan', '15.50', 'Maruchan?'),
+        ('["CODE", "CODE2"]', 'IDK', 'Tortillas', '90.50', 'Tortilleria'),
+        ('["CODE", "CODE2"]', 'IDK', 'Sabritas', '20.00', 'Sabritas')
     ;`, (err) => {
         if (err) {
             return console.error('Error al insertar productos ejemplo:', err.message);

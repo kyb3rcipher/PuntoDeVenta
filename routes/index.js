@@ -21,7 +21,24 @@ router.get('/productos', (req, res) => {
             return console.error('Error al obtener los productos:', err.message);
         }
         
-        res.render('products', { productos: rows });
+        res.render('products/index', { productos: rows });
+    });
+});
+
+router.get('/productos/crear', (req, res) => {
+    res.render('products/crear');
+});
+router.post('/productos/crear', (req, res) => {
+    const { nombre, precio, proveedor, tipo, codigo } = req.body;
+    const codigosArray = JSON.stringify(codigo);
+    
+    db.run('INSERT INTO productos (nomabre, precio, tipo, codigo, proveedor) VALUES (?, ?, ?, ?, ?)', [nombre, precio, tipo, codigosArray, proveedor], (err) => {
+        if (err) {
+            console.error('Error al guardar el producto', err.message);
+            res.status(500).send('Error al guardar el producto');
+            return;
+        }
+        res.redirect('/productos');
     });
 });
 

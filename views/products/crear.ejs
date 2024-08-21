@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/styles/products.css">
+<script src="/script/products.js"></script>
+
+<main>
+<h1>Crear Producto</h1>
+
+<form action="/productos/crear" method="POST">
+    <div class="left-side">
+        <label for="nombre">Nombre:</label> <br>
+        <input type="text" name="nombre" required>
+
+        <br> <label for="precio">Precio:</label> <br>
+        <input type="number" name="precio" required>
+
+        <br> <label for="tipo">Tipo:</label> <br>
+        <select name="tipo" required>
+            <option>Menudeo</option>
+            <option>A granel</option>
+        </select>
+
+        <br> <label for="proveedor">Proveedor</label> <br>
+        <select name="proveedor" required>
+            <option>Otro</option>
+        </select>
+    </div>
+
+    <div class="right-side">
+        <fieldset>
+            <legend for="codigo" id="label-codigos">
+                Códigos:
+                <button type="button" id="boton-agregar-codigo" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
+            </legend>        
+            <div id="codigos-container">
+                <input type="text" name="codigo[]" required>
+            </div>
+        </fieldset>
+        
+        <br> <label>Grupo:</label> <br>
+        <select>
+            <option>Ninguno</option>
+        </select>
+        
+        <br> <label>Imagen:</label> <br>
+        <input type="file">
+        
+        <br><br>
+        <input type="submit" class="green-button" value="Crear">
+    </div>
+</form>
+</main>
