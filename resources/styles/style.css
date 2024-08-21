@@ -14,25 +14,17 @@
 
 body {
     min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     /*background-color: #F6F6F6;
     background-color: #E4E9F7;*/
+    background-color: #E4E9F7;
     transition: all 0.5s ease;
 }
 
 main {
     position: absolute;
     left: 250px;
-    height: 100vh;
     width: calc(100% - 250px);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     padding: 25px;
-    background-color: #E4E9F7;
-    transition: all 0.5s ease;
 }
 
 main .text{
@@ -40,6 +32,18 @@ main .text{
     font-weight: 500;
     color: #707070;
     padding: 12px 60px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr { border-bottom: 2px solid #DDD; }
+tr:hover { background-color: #DDD; }
+
+td {
+    padding: 8px;
 }
 
 /******************** Side navbar ********************/
@@ -196,162 +200,4 @@ header .image-text .text-2 {
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
     color: white;
-}
-
-/******************** PRODUCTS ********************/
-#products {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-
-    background-color: white;
-    border: 1px solid #CCC;
-    padding: 10px;
-}
-
-#search {
-    width: 100%;
-    grid-column: 1 / -1;
-}
-
-.product img {
-    height: 80px;
-}
-.product {
-    height: 200px;
-    width: 150px;
-    border: 1px solid rgb(0 0 0 / 0.8);
-    text-align: center;
-    cursor: pointer;
-}
-.product h4 {
-    font-size: 20px;
-}
-.product p {
-    font-size: 10px;
-}
-
-/******************** TICKET ********************/
-#ticket {
-    padding-left: 20px;
-}
-
-#ticket h2 {
-    margin: 0;
-}
-
-.ticket table {
-    padding: 8px;
-}
-
-.ticket table {
-    border-collapse: collapse;
-}
-
-/* Estilos generales para la tabla */
-table {
-    width: 100%;
-    border-collapse: collapse; /* Esto asegura que las celdas compartan los bordes */
-}
-
-tr { border-bottom: 2px solid #DDD; }
-tr:hover { background-color: #DDD; }
-
-tr .product-sell-quantity-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.product-sell-quantity-controls .rounded-button {
-    height: 20px;
-    width: 20px;
-    margin-top: 0;
-    line-height: 20px;
-    font-size: 15px;
-}
-
-tr .product-sell-remove {
-    all: unset;
-    cursor: pointer;
-}
-
-table #empty-message { border-bottom: 0; }
-
-td {
-    padding: 8px;
-    text-align: center;
-}
-
-#ticket #total {
-    width: 100%;
-    visibility: hidden;
-}
-
-/******************** Cobrar ventana dialog popup ********************/
-.popup .popup-box {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0, 0.6);
-    display: none;
-    z-index: 1;
-}
-.popup-box.active {
-    pointer-events: auto;
-    transition: 0.4s ease;
-}
-
-.popup .popup-content {
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    padding: 20px;
-    box-sizing: border-box;
-    transform: translate(-50%, -50%) scale(0);
-    background-color: #F2F2F2;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    z-index: 2;
-}
-
-.popup #close {
-    all: initial;
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 33px;
-}
-
-.popup.active .popup-box {
-    display: block;
-}
-
-.popup.active .popup-content {
-    transform: translate(-50%, -50%) scale(1);
-    transition: 0.4s ease;
-    transition-delay: 0.25s;
-}
-
-.popup .popup-content h1 {
-    color: #333;
-    line-height: 1;
-}
-
-.popup-box p {
-    color: #333;
-    margin: 12px 0 20px;
-}
-
-.popup-content #cobrar {
-    width: 100%;
 }

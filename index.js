@@ -12,6 +12,8 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(layouts);
 app.set('layout', join(__dirname, 'views/layouts/layout'));
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 // Routes
 import indexRouter from './routes/index.js';
