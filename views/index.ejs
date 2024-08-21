@@ -2,81 +2,15 @@
     <div id="products">
         <input type="text" id="search" placeholder="&#xF002; Bucar o codigo de producto">
         
+        <% productos.forEach(producto => {
+            const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-');
+        %>
         <div class="product">
-            <img src="images/products-example/cocacola.webp" alt="">
-            <h4>Coca Cola 500ml</h4>
-            <p>$20.00</p>
+            <img src="images/products-example/<%= imagenNombre %>.webp" alt="">
+            <h4><%= producto.nombre %></h4>
+            <p>$<%= producto.precio %></p>
         </div>
-        <div class="product">
-            <img src="images/products-example/bigcola.jpeg" alt="">
-            <h4>Big Cola 500ml</h4>
-            <p>$10.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/frioles.jpeg" alt="">
-            <h4>Frijoles</h4>
-            <p>$30.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/maruchan.webp" alt="">
-            <h4>Maruchan</h4>
-            <p>$15.50</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/tortillas.webp" alt="">
-            <h4>Tortillas</h4>
-            <p>$90.30</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/sabritas.jpeg" alt="">
-            <h4>Sabritas</h4>
-            <p>$20.01</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/cocacola.webp" alt="">
-            <h4>Coca Cola 500ml</h4>
-            <p>$20.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/bigcola.jpeg" alt="">
-            <h4>Big Cola 500ml</h4>
-            <p>$10.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/frioles.jpeg" alt="">
-            <h4>Frijoles</h4>
-            <p>$30.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/maruchan.webp" alt="">
-            <h4>Maruchan</h4>
-            <p>$15.50</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/tortillas.webp" alt="">
-            <h4>Tortillas</h4>
-            <p>$90.30</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/sabritas.jpeg" alt="">
-            <h4>Sabritas</h4>
-            <p>$20.01</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/cocacola.webp" alt="">
-            <h4>Coca Cola 500ml</h4>
-            <p>$20.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/bigcola.jpeg" alt="">
-            <h4>Big Cola 500ml</h4>
-            <p>$10.00</p>
-        </div>
-        <div class="product">
-            <img src="images/products-example/frioles.jpeg" alt="">
-            <h4>Frijoles</h4>
-            <p>$30.00</p>
-        </div>
+        <% }) %>
     </div>
 
     <div id="ticket">
