@@ -2,15 +2,20 @@
 <script src="/script/products.js"></script>
 
 <main>
-<h1>Crear Producto</h1>
+<% const edit = renderType == 'edit';
+if (edit) { %>
+    <h1>Editar Producto</h1>
+<% } else { %>
+        <h1>Crear Producto</h1>
+<% } %>
 
-<form action="/productos/crear" method="POST" enctype="multipart/form-data">
+<form action="/productos/editar/<%= edit ? id : 'crear' %>" method="POST" enctype="multipart/form-data">
     <div class="left-side">
         <label for="nombre">Nombre:</label> <br>
-        <input type="text" name="nombre" required>
+        <input type="text" name="nombre" value="<%= edit ? nombre : '' %>" required>
 
         <br> <label for="precio">Precio:</label> <br>
-        <input type="number" step="0.01" name="precio" required>
+        <input type="number" step="0.01" name="precio" value="<%= edit ? precio : '' %>" required>
 
         <br> <label for="tipo">Tipo:</label> <br>
         <select name="tipo" required>
@@ -23,7 +28,7 @@
             <option>Otro</option>
         </select>
     </div>
-
+    
     <div class="right-side">
         <fieldset>
             <legend for="codigo" id="label-codigos">
@@ -31,7 +36,11 @@
                 <button type="button" id="boton-agregar-codigo" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
             </legend>        
             <div id="codigos-container">
-                <input type="text" name="codigo[]" required>
+                <%  if (edit) { JSON.parse(codigos).forEach(codigo => { %>
+                    <input type="text" name="codigo[]" value="<%= codigo %>" required>
+                <% }); } else { %>
+                    <input type="text" name="codigo[]" required>
+                <% } %>
             </div>
         </fieldset>
         
@@ -44,7 +53,7 @@
         <input type="file" name="imagen" accept="image/*">
         
         <br><br>
-        <input type="submit" class="green-button" value="Crear">
+        <input type="submit" class="green-button" value="<%= edit ? 'Editar' : 'Crear' %>">
     </div>
 </form>
 </main>

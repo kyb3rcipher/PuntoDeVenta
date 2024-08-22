@@ -26,6 +26,7 @@ function abrir() {
 
 function crearTablas(db) {
     db.run(`CREATE TABLE IF NOT EXISTS productos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         codigo TEXT NOT NULL,
         tipo VARCHAR(20) NOT NULL,
         nombre VARCHAR(20) NOT NULL,
@@ -40,7 +41,7 @@ function crearTablas(db) {
 }
 
 function insertarProductosEjemplo(db) {
-    db.run(`INSERT INTO productos VALUES
+    db.run(`INSERT INTO productos (codigo, tipo, nombre, precio, proveedor) VALUES
         ('["CODE", "CODE2"]', 'IDK', 'Coca Cola 500ml', '20.00', 'Coca Cola'),
         ('["CODE", "CODE2"]', 'IDK', 'Big Cola 500ml', '10.00', 'Big Cola'),
         ('["CODE", "CODE2"]', 'IDK', 'Frijoles', '30.00', 'Frijoleria?'),

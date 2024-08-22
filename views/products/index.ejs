@@ -29,7 +29,7 @@
                 <td><%= codigoArray %></td>
                 <td><img style="height: 50px;" src="/images/products/<%= imagenNombre %>.webp"></td>
                 <td>
-                    <button class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
+                    <button onclick="window.location.href = '/productos/editar/<%= producto.id %>'" class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
                     <button class="red-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
                 </td>
             </tr>

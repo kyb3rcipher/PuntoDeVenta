@@ -49,8 +49,49 @@ router.get('/productos', (req, res) => {
     });
 });
 
+router.get('/productos/editar/:id', (req, res) => {
+    const id = req.params.id;
+    
+    db.get('SELECT * FROM productos WHERE id = ?', [id], (err, product) => {
+        if (err) {
+            console.error('Error al consultar la base de datos:', err,message);
+            return res.status(500).send('Error al consultar la base de datos');
+        }
+
+        if (!product) {
+            return res.status(404).send('Producto no encontrado');
+        }
+        
+        res.render('products/producto', {
+            renderType: 'edit',
+            id: product.id,
+            nombre: product.nombre,
+            precio: product.precio,
+            tipo: product.tipo,
+            proveedor: product.proveedor,
+            codigos: product.codigo,
+            grupo: product.grupo,
+            imagen: product.imagen
+        });
+    });
+});
+router.post('/productos/editar/:id', upload.single('imagen'), (req, res) => {
+    const id = req.params.id;
+    const { nombre, precio, proveedor, tipo, codigo } = req.body;
+    const codigosArray = JSON.stringify(codigo);
+
+    db.run('UPDATE productos SET nombre = ?, precio = ?, tipo = ?, codigo = ?, proveedor = ? WHERE id = ?', [nombre, precio, tipo, codigosArray, proveedor, id], (err) => {
+        if (err) {
+            console.error('Error al actualizar el producto', err.message);
+            res.status(500).send('Error al aztualizar el producto');
+            return;
+        }
+        res.redirect('/productos');
+    });
+});
+
 router.get('/productos/crear', (req, res) => {
-    res.render('products/crear');
+    res.render('products/producto', { renderType: 'create' });
 });
 router.post('/productos/crear', upload.single('imagen'), (req, res) => {
     const { nombre, precio, proveedor, tipo, codigo } = req.body;
