@@ -1,2 +1,4 @@
-node_modules
+node_modules/
+resources/images/products/
+resources/images/products-example/
 database.db
