@@ -11,6 +11,31 @@ form {
     width: 50%;
 }
 
+#dollar-symbol {
+    margin-left: 10px; 
+    margin-right: -20px;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+}
+
+#precio-costo, #precio-venta {
+    padding-left: 20px;
+    width: 85px;
+    position: relative;
+    z-index: 0;
+}
+
+#ganancia {
+    width: 85px;
+    padding-right: 20px;
+}
+
+#percentage-symbol {
+    margin-left: -20px;
+    pointer-events: none;
+}
+
 fieldset {
     width: 0;
     padding: 5px;
