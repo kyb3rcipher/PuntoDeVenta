@@ -89,10 +89,10 @@ router.get('/productos/editar/:id', async (req, res) => {
 });
 router.post('/productos/editar/:id', upload.single('imagen'), (req, res) => {
     const id = req.params.id;
-    const { nombre, precio, proveedor, tipo, codigo } = req.body;
+    const { nombre, precio_costo, precio_venta, ganancia, proveedor, tipo, codigo } = req.body;
     const codigosArray = JSON.stringify(codigo);
 
-    db.run('UPDATE productos SET nombre = ?, precio = ?, tipo = ?, codigo = ?, proveedor = ? WHERE id = ?', [nombre, precio, tipo, codigosArray, proveedor, id], (err) => {
+    db.run('UPDATE productos SET nombre = ?, precio_costo = ?, precio_venta = ?, ganancia = ?, tipo = ?, codigos = ?, proveedor = ? WHERE id = ?', [nombre, precio_costo, precio_venta, ganancia, tipo, codigosArray, proveedor, id], (err) => {
         if (err) {
             console.error('Error al actualizar el producto', err.message);
             res.status(500).send('Error al aztualizar el producto');

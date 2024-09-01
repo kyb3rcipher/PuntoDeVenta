@@ -9,18 +9,18 @@ if (edit) { %>
         <h1>Crear Producto</h1>
 <% } %>
 
-<form action="/productos/<%= edit ? producto.id : 'crear' %>" method="POST" enctype="multipart/form-data">
+<form action="/productos/<%= edit ? `editar/${producto.id}` : 'crear' %>" method="POST" enctype="multipart/form-data">
     <div class="left-side">
         <label for="nombre">Nombre:</label> <br>
         <input type="text" name="nombre" value="<%= edit ? producto.nombre : '' %>" required>
 
         <br> <label for="precio-costo">Precio Costo:</label> <br>
         <span id="dollar-symbol"><i class="fa-solid fa-dollar-sign"></i></span>
-        <input type="number" id="precio-costo" step="0.01" name="precio_costo" value="<%= edit ? producto.precioCosto : '' %>" required>
+        <input type="number" id="precio-costo" step="0.01" name="precio_costo" value="<%= edit ? producto.precio_costo : '' %>" required>
 
         <br> <label for="precio-venta">Precio Venta:</label> <br>
         <span id="dollar-symbol"><i class="fa-solid fa-dollar-sign"></i></span>
-        <input type="number" id="precio-venta" step="0.01" name="precio_venta" value="<%= edit ? producto.precioVenta : '' %>" required>
+        <input type="number" id="precio-venta" step="0.01" name="precio_venta" value="<%= edit ? producto.precio_venta : '' %>" required>
 
         <br> <label for="ganancia">Ganancia:</label> <br>
         <input type="number" id="ganancia" name="ganancia" value="<%= edit ? producto.ganancia : '' %>" required>
