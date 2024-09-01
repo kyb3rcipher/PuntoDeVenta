@@ -9,21 +9,21 @@ if (edit) { %>
         <h1>Crear Producto</h1>
 <% } %>
 
-<form action="/productos/editar/<%= edit ? id : 'crear' %>" method="POST" enctype="multipart/form-data">
+<form action="/productos/<%= edit ? producto.id : 'crear' %>" method="POST" enctype="multipart/form-data">
     <div class="left-side">
         <label for="nombre">Nombre:</label> <br>
-        <input type="text" name="nombre" value="<%= edit ? nombre : '' %>" required>
+        <input type="text" name="nombre" value="<%= edit ? producto.nombre : '' %>" required>
 
         <br> <label for="precio-costo">Precio Costo:</label> <br>
         <span id="dollar-symbol"><i class="fa-solid fa-dollar-sign"></i></span>
-        <input type="number" id="precio-costo" step="0.01" name="precio-costo" value="<%= edit ? precioCosto : '' %>" required>
+        <input type="number" id="precio-costo" step="0.01" name="precio_costo" value="<%= edit ? producto.precioCosto : '' %>" required>
 
         <br> <label for="precio-venta">Precio Venta:</label> <br>
         <span id="dollar-symbol"><i class="fa-solid fa-dollar-sign"></i></span>
-        <input type="number" id="precio-venta" step="0.01" name="precio-venta" value="<%= edit ? precioVenta : '' %>" required>
+        <input type="number" id="precio-venta" step="0.01" name="precio_venta" value="<%= edit ? producto.precioVenta : '' %>" required>
 
         <br> <label for="ganancia">Ganancia:</label> <br>
-        <input type="number" id="ganancia" name="ganancia" value="<%= edit ? ganancia : '' %>" required>
+        <input type="number" id="ganancia" name="ganancia" value="<%= edit ? producto.ganancia : '' %>" required>
         <span id="percentage-symbol"><i class="fa-solid fa-percent"></i></span>
 
         <br> <label for="tipo">Tipo:</label> <br>
@@ -40,7 +40,7 @@ if (edit) { %>
                 <button type="button" id="boton-agregar-codigo" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
             </legend>        
             <div id="codigos-container">
-                <%  if (edit) { JSON.parse(codigos).forEach(codigo => { %>
+                <%  if (edit) { JSON.parse(producto.codigos).forEach(codigo => { %>
                     <input type="text" name="codigo[]" value="<%= codigo %>" required>
                 <% }); } else { %>
                     <input type="text" name="codigo[]" required>
@@ -50,7 +50,11 @@ if (edit) { %>
         
         <br> <label for="proveedor">Proveedor:</label> <br>
         <select name="proveedor" required>
-            <option>Otro</option>
+            <% proveedores.forEach(proveedor => { %>
+                <option value="<%= proveedor.nombre %>" <% if (edit && proveedor.nombre === producto.proveedor) { %> selected <% } %> >
+                    <%= proveedor.nombre %>
+                </option>
+            <% }); %>
         </select>
 
         <br> <label>Grupo:</label> <br>

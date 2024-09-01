@@ -8,6 +8,17 @@ import database from '../db.js';
 const router = Router();
 const db = database.abrir();
 
+async function getProveedores() {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM proveedores', [], (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 // Configure multer for files upload
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -49,33 +60,32 @@ router.get('/productos', (req, res) => {
     });
 });
 
-router.get('/productos/editar/:id', (req, res) => {
-    const id = req.params.id;
-    
-    db.get('SELECT * FROM productos WHERE id = ?', [id], (err, product) => {
-        if (err) {
-            console.error('Error al consultar la base de datos:', err,message);
-            return res.status(500).send('Error al consultar la base de datos');
-        }
-
-        if (!product) {
-            return res.status(404).send('Producto no encontrado');
-        }
+router.get('/productos/editar/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const proveedores = await getProveedores();
         
-        res.render('products/producto', {
-            renderType: 'edit',
-            id: product.id,
-            nombre: product.nombre,
-            precioCosto: product.precio_costo,
-            precioVenta: product.precio_venta,
-            ganancia: product.ganancia,
-            tipo: product.tipo,
-            proveedor: product.proveedor,
-            codigos: product.codigo,
-            grupo: product.grupo,
-            imagen: product.imagen
+        
+        db.get('SELECT * FROM productos WHERE id = ?', [id], (err, product) => {
+            if (err) {
+                console.error('Error al consultar la base de datos:', err.message);
+                return res.status(500).send('Error al consultar la base de datos');
+            }
+
+            if (!product) {
+                return res.status(404).send('Producto no encontrado');
+            }
+            
+            res.render('products/producto', {
+                renderType: 'edit',
+                producto: product,
+                proveedores: proveedores
+            });
         });
-    });
+    } catch (err) {
+        console.error('Error al obtener proveedores:', err.message);
+        res.status(500).send('Error al obtener proveedores');
+    }
 });
 router.post('/productos/editar/:id', upload.single('imagen'), (req, res) => {
     const id = req.params.id;
@@ -92,14 +102,21 @@ router.post('/productos/editar/:id', upload.single('imagen'), (req, res) => {
     });
 });
 
-router.get('/productos/crear', (req, res) => {
-    res.render('products/producto', { renderType: 'create' });
+router.get('/productos/crear', async (req, res) => {
+    try {
+        const proveedores = await getProveedores();
+        res.render('products/producto', { renderType: 'create', proveedores: proveedores });
+    } catch (err) {
+        console.error('Error al obtener proveedores:', err.message);
+        res.status(500).send('Error al obtener proveedores');
+    }
 });
+
 router.post('/productos/crear', upload.single('imagen'), (req, res) => {
-    const { nombre, precio, proveedor, tipo, codigo } = req.body;
+    const { nombre, precio_costo, precio_venta, ganancia, proveedor, tipo, codigo } = req.body;
     const codigosArray = JSON.stringify(codigo);
 
-    db.run('INSERT INTO productos (nombre, precio, tipo, codigo, proveedor) VALUES (?, ?, ?, ?, ?)', [nombre, precio, tipo, codigosArray, proveedor], (err) => {
+    db.run('INSERT INTO productos (nombre, precio_costo, precio_venta, ganancia, tipo, codigos, proveedor) VALUES (?, ?, ?, ?, ?, ?, ?)', [nombre, precio_costo, precio_venta, ganancia, tipo, codigosArray, proveedor], (err) => {
         if (err) {
             console.error('Error al guardar el producto', err.message);
             res.status(500).send('Error al guardar el producto');
@@ -113,10 +130,10 @@ router.post('/productos/crear', upload.single('imagen'), (req, res) => {
 router.get('/proveedores', (req, res) => {
     db.all('SELECT * FROM proveedores', [], (err, rows) => {
         if (err) {
-            return console.error('Error al obtener los proveedores:', err.message);
+            return console.error('Error al obtener los productos:', err.message);
         }
         
-        res.render('proveedores/index', { proveedores: rows, renderType: 'create' });
+        res.render('proveedores/index', { proveedores: rows });
     });
 });
 

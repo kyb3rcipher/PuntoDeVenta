@@ -27,13 +27,14 @@ function abrir() {
 function crearTablas(db) {
     db.run(`CREATE TABLE IF NOT EXISTS productos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        codigo TEXT NOT NULL,
+        codigos TEXT NOT NULL,
         tipo VARCHAR(20) NOT NULL,
         nombre VARCHAR(20) NOT NULL,
         precio_costo TEXT NOT NULL,
         precio_venta TEXT NOT NULL,
         ganancia TEXT NOT NULL,
-        proveedor TEXT NOT NULL
+        proveedor VARCHAR(20),
+        FOREIGN KEY (proveedor) REFERENCES proveedores(nombre)
     )`, (err) => {
         if (err) {
             return console.error('Error al crear la tabla productos:', err.message);
@@ -51,8 +52,24 @@ function crearTablas(db) {
     });
 }
 
+function insertarProveedores(db) {
+    db.run(`INSERT INTO proveedores VALUES
+        ('Coca Cola'),
+        ('Big Cola'),
+        ('Frijoleria?'),
+        ('Maruchan?'),
+        ('Tortilleria'),
+        ('Sabritas')
+    ;`, (err) => {
+        if (err) {
+            return console.error('Error al insertar proveedores:', err.message);
+        }
+        console.log('Inserción de proveedores hecha con éxito.');
+    });
+}
+
 function insertarProductosEjemplo(db) {
-    db.run(`INSERT INTO productos (codigo, tipo, nombre, precio_costo, precio_venta, ganancia, proveedor) VALUES
+    db.run(`INSERT INTO productos (codigos, tipo, nombre, precio_costo, precio_venta, ganancia, proveedor) VALUES
         ('["CODE", "CODE2"]', 'IDK', 'Coca Cola 500ml', '40.00', '20.00', '10', 'Coca Cola'),
         ('["CODE", "CODE2"]', 'IDK', 'Big Cola 500ml', '40.00', '10.00', '10', 'Big Cola'),
         ('["CODE", "CODE2"]', 'IDK', 'Frijoles', '40.00', '30.00', '10', 'Frijoleria?'),
@@ -66,6 +83,7 @@ function insertarProductosEjemplo(db) {
         console.log('Inserción de productos ejemplo hecha con éxito.');
     });
 }
-//insertarProductosEjemplo(abrir());
+// insertarProductosEjemplo(abrir());
+// insertarProveedores(abrir());
 
 export default { abrir };

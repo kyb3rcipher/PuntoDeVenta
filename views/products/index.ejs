@@ -19,7 +19,7 @@
     <tbody>
         <% productos.forEach(producto => {
             const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-'),
-                codigoArray = JSON.parse(producto.codigo)[0];
+                codigoArray = JSON.parse(producto.codigos)[0];
         %>
             <tr>
                 <td><%= producto.nombre %></td>
