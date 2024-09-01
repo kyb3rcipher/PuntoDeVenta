@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="styles/products.css">
+<script src="script/proveedores.js"></script>
+
+<main>
+<h1>Proveedores</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Accion</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% proveedores.forEach(proveedor => { %>
+            <tr>
+                <td><%= proveedor.nombre %></td>
+                <td>
+                    <button onclick="window.location.href = '/proveedores/editar/<%= proveedor.nombre %>'" class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
+                    <button onclick="eliminarProveedor('<%= proveedor.nombre %>')" class="red-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                </td>
+            </tr>
+        <%})%>
+    </tbody>
+</table>
+
+<button id="boton-nuevo-producto" class="rounded-button"><i class="fa-solid fa-plus"></i></button>
+</main>

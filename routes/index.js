@@ -109,4 +109,65 @@ router.post('/productos/crear', upload.single('imagen'), (req, res) => {
     });
 });
 
+/*************** PROVEEDORES ***************/
+router.get('/proveedores', (req, res) => {
+    db.all('SELECT * FROM proveedores', [], (err, rows) => {
+        if (err) {
+            return console.error('Error al obtener los proveedores:', err.message);
+        }
+        
+        res.render('proveedores/index', { proveedores: rows, renderType: 'create' });
+    });
+});
+
+router.get('/proveedores/crear', (req, res) => {
+    res.render('proveedores/proveedor', { renderType: 'create' });
+});
+router.post('/proveedores/crear', (req, res) => {
+    const nombre = req.body.nombre;
+
+    db.run('INSERT INTO proveedores VALUES (?)', nombre, (err) => {
+        if (err) {
+            console.error('Error al crear el proveedor', err.message);
+            res.status(500).send('Error al crear el producto' + req.body);
+            return;
+        }
+        res.redirect('/proveedores');
+    });
+});
+
+router.get('/proveedores/editar/:nombre', (req, res) => {
+    const nombre = req.params.nombre;
+
+    db.get('SELECT * FROM proveedores WHERE nombre = ?', nombre, (err, proveedor) => {
+        res.render('proveedores/proveedor', { proveedor: proveedor, renderType: 'edit' });
+    });
+});
+router.post('/proveedores/editar/:nombre', (req, res) => {
+    const oldNombre = req.params.nombre,
+        newNombre = req.body.nombre;
+
+    db.run('UPDATE proveedores SET nombre = ? WHERE nombre = ?', [ newNombre, oldNombre ], (err) => {
+        if (err) {
+            console.error('Error al actualizar el proveedor:', err.message);
+        }
+        res.redirect(`/proveedores/editar/${newNombre}`);
+    });
+});
+
+router.delete('/proveedores/eliminar', (req, res) => {
+    const nombre = req.body.nombre;
+
+    db.run('DELETE FROM proveedores WHERE nombre = ?', nombre, (err) => {
+        if (err) {
+            console.error('Error al eliminar el proveedor', err.message);
+            res.status(500).send('Error al eliminar el proveedor');
+            return;
+        }
+        res.status(200).send('Proveedor eliminado exitosamente');
+    });
+});
+
+
+
 export default router;

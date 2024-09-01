@@ -17,6 +17,8 @@ app.set('layout extractScripts', true);
 
 // Routes
 import indexRouter from './routes/index.js';
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 app.use(indexRouter);
 
 // Static files

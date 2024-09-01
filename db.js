@@ -38,7 +38,16 @@ function crearTablas(db) {
         if (err) {
             return console.error('Error al crear la tabla productos:', err.message);
         }
-        console.log('Tabla productos creada con éxito.');
+        console.log('Tabla productos creada con exito.');
+    });
+
+    db.run(`CREATE TABLE IF NOT EXISTS proveedores (
+            nombre VARCHAR(20) NOT NULL
+        )`, (err) => {
+            if (err) {
+                return console.error('Error al crear la tabla proveedores:', err.message);
+            }
+            console.log('Tabla proveedores creada con exito.');
     });
 }
 
@@ -57,6 +66,6 @@ function insertarProductosEjemplo(db) {
         console.log('Inserción de productos ejemplo hecha con éxito.');
     });
 }
-// insertarProductosEjemplo(abrir());
+//insertarProductosEjemplo(abrir());
 
 export default { abrir };
