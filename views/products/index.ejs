@@ -27,7 +27,7 @@
                 <td><%= producto.tipo %></td>
                 <td><%= producto.proveedor %></td>
                 <td><%= codigoArray %></td>
-                <td><img style="height: 50px;" src="/images/products/<%= imagenNombre %>.webp"></td>
+                <td><img style="height: 50px;" src="/images/products/<%= imagenNombre %>.webp" onerror="this.onerror=null; this.src='/images/products/default.webp';"></td>
                 <td>
                     <button onclick="window.location.href = '/productos/editar/<%= producto.id %>'" class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
                     <button class="red-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
