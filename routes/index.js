@@ -2,7 +2,7 @@ import {Router} from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import database from '../db.js';
+import database from '../database/databaseHelper.js';
 
 // Configure router and database
 const router = Router();
