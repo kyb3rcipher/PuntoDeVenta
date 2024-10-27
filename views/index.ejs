@@ -8,7 +8,7 @@
         <% productos.forEach(producto => {
             const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-');
         %>
-        <div class="product">
+        <div class="product" data-product-id="<%= producto.id %>">
             <img src="images/products-example/<%= imagenNombre %>.webp" onerror="this.onerror=null; this.src='/images/products/default.webp';" alt="">
             <h4><%= producto.nombre %></h4>
             <p>$<%= producto.precio_venta %></p>

@@ -50,6 +50,19 @@ function crearTablas(db) {
             }
             console.log('Tabla proveedores creada con exito.');
     });
+
+    db.run(`CREATE TABLE IF NOT EXISTS ventas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            productos VARCHAR(255),
+            pago INTEGER,
+            fecha fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP
+        )`, (err) => {
+            if (err) {
+                return console.log('Error al crear la tabla ventas: ', err.message);
+            }
+            console.log('Tabla ventas creadas con exito');
+        }
+    );
 }
 
 function insertarProveedores(db) {

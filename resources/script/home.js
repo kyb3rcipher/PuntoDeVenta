@@ -141,13 +141,47 @@ class Cart {
         cobrarWindow.classList.toggle('active');
         pagoInput.select();
     }
+
+    static registrarVenta() {
+        const actualSellProducts = Array.from(Cart.cartTbody.querySelectorAll('tr')).map(row => {
+            return {
+                nombre: row.querySelector('td').innerText,
+                cantidad: row.querySelector('.product-sell-quantity').innerText.replace('x', ''),
+                precio: row.querySelector('#product-total').innerText.replace('$', '')
+            };
+        });
+        const pago = parseFloat(document.getElementById('cobrar-ventana').querySelector('input').value);
+
+        fetch('/registrar-venta', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ productos: actualSellProducts, pago: pago })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Venta registrada con éxito') {
+                Cart.cartTbody.innerHTML = '';
+                Cart.updateTotal();
+
+                const cobrarWindow = document.getElementById('cobrar-ventana'), cobrarDialog = cobrarWindow.querySelector('dialog');
+                cobrarDialog.close();
+                cobrarWindow.classList.toggle('active');
+            }
+        })
+        .catch(error => {
+            console.error('Error al registrar la venta:', error);
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const productElements = document.getElementsByClassName('product'), 
-        buttonCobrar = document.getElementById('total');
+        buttonCobrar = document.getElementById('total'), buttonRegistrarVenta = document.getElementById('cobrar');
     
     Array.from(productElements).forEach(product => new Product(product));
     
     buttonCobrar.addEventListener('click', Cart.cobrarVenta);
+    buttonRegistrarVenta.addEventListener('click', Cart.registrarVenta);
 });

@@ -50,6 +50,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/registrar-venta', (req, res) => {
+    const { productos, pago } = req.body;
+    
+    db.run(`INSERT INTO ventas (productos, pago) VALUES (?, ?)`, [JSON.stringify(productos), pago], (err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al registrar la venta', error: err.message });
+        }
+        res.status(200).json({ message: 'Venta registrada con éxito' });
+    })
+});
+
 router.get('/productos', (req, res) => {
     db.all('SELECT * FROM productos', [], (err, rows) => {
         if (err) {
