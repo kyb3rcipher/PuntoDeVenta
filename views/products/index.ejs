@@ -21,7 +21,7 @@
             const imagenNombre = producto.nombre.toLowerCase().replace(/\s+/g, '-'),
                 codigoArray = JSON.parse(producto.codigos)[0];
         %>
-            <tr>
+            <tr data-product-id="<%= producto.id %>">
                 <td><%= producto.nombre %></td>
                 <td>$<%= producto.precio_venta %></td>
                 <td><%= producto.tipo %></td>
@@ -29,8 +29,8 @@
                 <td><%= codigoArray %></td>
                 <td><img style="height: 50px;" src="/images/products/<%= imagenNombre %>.webp" onerror="this.onerror=null; this.src='/images/products/default.webp';"></td>
                 <td>
-                    <button onclick="window.location.href = '/productos/editar/<%= producto.id %>'" class="green-button"><i class="fa-solid fa-pencil"></i> Editar</button>
-                    <button class="red-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                    <button class="green-button" onclick="window.location.href = '/productos/editar/<%= producto.id %>'"><i class="fa-solid fa-pencil"></i> Editar</button>
+                    <button class="red-button" onclick="deleteProduct(this)"><i class="fa-solid fa-trash"></i> Eliminar</button>
                 </td>
             </tr>
         <%})%>

@@ -137,6 +137,17 @@ router.post('/productos/crear', upload.single('imagen'), (req, res) => {
     });
 });
 
+router.post('/productos/eliminar',(req, res) => {
+    const id  = req.body.id;
+
+    db.run('DELETE FROM productos WHERE id = ?', [id], (err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error al eliminar el producto', error: err.message });
+        }
+        res.status(200).json({ message: 'Producto eliminado correctamente' });
+    });
+});
+
 /*************** PROVEEDORES ***************/
 router.get('/proveedores', (req, res) => {
     db.all('SELECT * FROM proveedores', [], (err, rows) => {
