@@ -46,7 +46,16 @@ router.get('/', (req, res) => {
             return console.error('Error al obtener los productos:', err.message);
         }
         
-        res.render('index', { productos: rows });
+        db.get('SELECT COUNT(*) AS numero_ventas FROM ventas WHERE DATE(fecha) = DATE("now")', (err, row) => {
+            // Si el query asicrono para obtener el numero de ventas del dia da error colocar null 
+            if (err) {
+                console.error(err.message);
+                res.render('index', { productos: rows, numeroTicket: null});
+                return;
+            }
+            
+            res.render('index', { productos: rows, numeroTicket: row.numero_ventas + 1});
+        });
     });
 });
 
