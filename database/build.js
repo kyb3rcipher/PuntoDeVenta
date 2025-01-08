@@ -31,7 +31,7 @@ function crearTablas(db, callback) {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 productos VARCHAR(255),
                 pago INTEGER,
-                fecha_creacion TEXT DEFAULT CURRENT_TIMESTAMP
+                fecha TEXT DEFAULT CURRENT_TIMESTAMP
             )`, (err) => {
                 if (err) {
                     return console.error('Error al crear la tabla ventas:', err.message);
